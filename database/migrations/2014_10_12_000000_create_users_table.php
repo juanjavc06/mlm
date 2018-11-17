@@ -13,6 +13,19 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+/*
+CREATE TABLE Usuario(
+usu_id VARCHAR(15) PRIMARY KEY ,
+usu_nombre VARCHAR(200) NOT NULL,
+usu_password VARCHAR(80) NOT NULL,
+usu_email VARCHAR(50) NOT NULL,
+usu_telefono VARCHAR(50)NOT NULL,
+usu_pais VARCHAR(100),
+usu_ciudad VARCHAR(50),
+usu_codigoReferido VARCHAR(20) NOT NULL,
+usu_codigoReferido_Padre VARCHAR(20)
+);
+*/
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
