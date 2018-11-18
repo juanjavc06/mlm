@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Countries;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -11,6 +12,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 class RegisterController extends Controller
 {
     /*
+     * 
     |--------------------------------------------------------------------------
     | Register Controller
     |--------------------------------------------------------------------------
@@ -48,10 +50,27 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+    /*
+    $table->increments('id');
+    $table->string('name');
+    $table->string('email')->unique();
+    $table->timestamp('email_verified_at')->nullable();
+    $table->string('password');
+    $table->string('telefono');
+    $table->string('pais');
+    $table->string('ciudad');
+    $table->integer("codigo_referido1");
+    $table->integer("codigo_referido2");
+    $table->rememberToken();
+    $table->timestamps();
+    */
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'telefono' => 'required|string|min:6|confirmed',
+            'pais' => 'required|numeric',
+            'ciudad' => 'required|numeric',
         ]);
     }
 
@@ -61,12 +80,18 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
+    
+    
     protected function create(array $data)
     {
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'email' => $data['email'],
+            'email' => $data['email'],
+            'email' => $data['email'],
+            'email' => $data['email'],
         ]);
     }
 }

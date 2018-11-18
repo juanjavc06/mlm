@@ -13,30 +13,20 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-/*
-CREATE TABLE Usuario(
-usu_id VARCHAR(15) PRIMARY KEY ,
-usu_nombre VARCHAR(200) NOT NULL,
-usu_password VARCHAR(80) NOT NULL,
-usu_email VARCHAR(50) NOT NULL,
-usu_telefono VARCHAR(50)NOT NULL,
-usu_pais VARCHAR(100),
-usu_ciudad VARCHAR(50),
-usu_codigoReferido VARCHAR(20) NOT NULL,
-usu_codigoReferido_Padre VARCHAR(20)
-);
-*/
-        Schema::create('users', function (Blueprint $table) {
+       Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('telefono');
-            $table->string('pais');
-            $table->string('ciudad');
+            $table->integer('id_country')->unsigned();
+            $table->integer('id_state')->unsigned();
+            $table->foreign('id_country')->references('id')->on('countries');
+            $table->foreign('id_state')->references('id')->on('states');
             $table->integer("codigo_referido1");
             $table->integer("codigo_referido2");
+            $table->tinyInteger("is_administrator");
             $table->rememberToken();
             $table->timestamps();
         }); 
